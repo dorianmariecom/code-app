@@ -1,5 +1,4 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, { useRef } from 'react';
 import Config from 'react-native-config';
 import { WebView } from 'react-native-webview';
 
@@ -13,7 +12,13 @@ const URLS = {
 const CODE_URL = Config.CODE_URL || URLS[CODE_ENV] || URLS.production;
 
 const App = () => {
-  return <WebView source={{ uri: CODE_URL }} />;
+  const webViewRef = useRef();
+
+  const onLoad = () => {
+    webViewRef.current.postMessage(JSON.stringify({ config: Config }));
+  };
+
+  return <WebView ref={webViewRef} source={{ uri: CODE_URL }} onLoad={onLoad} />;
 };
 
 export default App;
