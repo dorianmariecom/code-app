@@ -5,32 +5,30 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
-    "start": "react-native start",
-    "test": "jest"
+    "start": "react-native start"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-native": "0.74.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@babel/preset-env": "^7.20.0",
-    "@babel/runtime": "^7.20.0",
-    "@react-native/babel-preset": "0.74.85",
-    "@react-native/eslint-config": "0.74.85",
-    "@react-native/metro-config": "0.74.85",
-    "@react-native/typescript-config": "0.74.85",
-    "@types/react": "^18.2.6",
-    "@types/react-test-renderer": "^18.0.0",
-    "babel-jest": "^29.6.3",
-    "eslint": "^8.19.0",
-    "jest": "^29.6.3",
-    "prettier": "2.8.8",
-    "react-test-renderer": "18.2.0",
-    "typescript": "5.0.4"
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "@babel/runtime": "*",
+    "@react-native/babel-preset": "*",
+    "@react-native/eslint-config": "*",
+    "@react-native/metro-config": "*",
+    "@react-native/typescript-config": "*",
+    "@types/react": "*",
+    "@types/react-test-renderer": "*",
+    "babel-jest": "*",
+    "eslint": "*",
+    "jest": "*",
+    "prettier": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-test-renderer": "*",
+    "typescript": "*"
   },
   "engines": {
-    "node": ">=18"
+    "node": "22.5.1",
+    "yarn": "1.22.22",
+    "npm": "10.8.2"
   }
 }
