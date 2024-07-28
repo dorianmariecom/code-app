@@ -11,15 +11,15 @@ target 'code' do
   config = use_native_modules!
 
   use_react_native!(
-    :path => config[:reactNativePath],
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    path: config[:reactNativePath],
+    app_path: "#{Pod::Config.instance.installation_root}/.."
   )
 
   post_install do |installer|
     react_native_post_install(
       installer,
       config[:reactNativePath],
-      :mac_catalyst_enabled => false,
+      mac_catalyst_enabled: false,
     )
   end
 end
