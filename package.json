@@ -2,19 +2,12 @@
   "name": "code",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start"
-  },
   "dependencies": {
     "@babel/core": "*",
     "@babel/preset-env": "*",
     "@babel/runtime": "*",
     "@react-native/babel-preset": "*",
-    "@react-native/eslint-config": "*",
     "@react-native/metro-config": "*",
-    "@react-native/typescript-config": "*",
     "@types/react": "*",
     "@types/react-test-renderer": "*",
     "babel-jest": "*",
@@ -23,7 +16,7 @@
     "prettier": "*",
     "react": "*",
     "react-native": "*",
-    "react-test-renderer": "*",
+    "react-native-config": "*",
     "typescript": "*"
   },
   "engines": {
