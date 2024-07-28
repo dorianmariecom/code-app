@@ -17,6 +17,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
+    "react-native-webview": "*",
     "typescript": "*"
   },
   "engines": {
