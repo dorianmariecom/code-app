@@ -2987,9 +2987,9 @@ flow-enums-runtime@^0.0.6:
   integrity sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==
 
 flow-parser@0.*:
-  version "0.241.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.241.0.tgz#cc42f2e1ea8e9ef0a9ab5a9c3d9be01fc121d973"
-  integrity sha512-82yKXpz7iWknWFsognZUf5a6mBQLnVrYoYSU9Nbu7FTOpKlu3v9ehpiI9mYXuaIO3J0ojX1b83M/InXvld9HUw==
+  version "0.242.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.242.0.tgz#2ebd8db09a3d6df547303174325c26b463241647"
+  integrity sha512-qRfeoAH1j32bov4lw62wwjh7MQTLveiQ/nHqgjoAMlUbxA2rY+/Sq2l3m/sYuYSQyR7M2ocARPOWJQEwM6x4WA==
 
 fresh@0.5.2:
   version "0.5.2"
@@ -4657,6 +4657,11 @@ react-native-config@*:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.5.2.tgz#035801ae35117ffff41a32d7c49def6721324d5d"
   integrity sha512-jIx/21Ryr7+NXfULG1lQoct4KgmVae2KZ7/mt5fY2tm4s7N0jAxRm5Js8FX6adgkHuhV2fiizEBJDn/fWIFWiw==
+
+react-native-device-info@*:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-11.1.0.tgz#7db5c4e5a179dce761efac155a493aa0956a40ab"
+  integrity sha512-hzXJSObJdezEz0hF7MAJ3tGeoesuQWenXXt9mrQR9Mjb8kXpZ09rqSsZ/quNpJdZpQ3rYiFa3/0GFG5KNn9PBg==
 
 react-native-webview@*:
   version "13.10.5"

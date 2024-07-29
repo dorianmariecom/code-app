@@ -17,6 +17,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
+    "react-native-device-info": "*",
     "react-native-webview": "*",
     "typescript": "*"
   },
