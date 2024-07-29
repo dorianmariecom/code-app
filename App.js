@@ -18,7 +18,7 @@ const App = () => {
     webViewRef.current.postMessage(JSON.stringify({ config: Config }));
   };
 
-  return <WebView ref={webViewRef} source={{ uri: CODE_URL }} onLoad={onLoad} />;
+  return <WebView ref={webViewRef} source={{ uri: CODE_URL }} onLoadStart={alert} />;
 };
 
 export default App;
