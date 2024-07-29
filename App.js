@@ -19,7 +19,7 @@ const App = () => {
   };
 
   return (
-    <WebView ref={webViewRef} source={{uri: CODE_URL}} onLoadStart={alert} />
+    <WebView ref={webViewRef} source={{uri: CODE_URL}} onLoad={onLoad} />
   );
 };
 
