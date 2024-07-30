@@ -24,7 +24,7 @@ const App = () => {
       buildNumber: BUILD_NUMBER,
       config: Config,
       statusBarHeight,
-      version: VERSION
+      version: VERSION,
     });
   };
 
