@@ -2,9 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from 'react-native-config';
 import React, {useRef, useState, useEffect} from 'react';
 import {NativeModules} from 'react-native';
+import {Notifications} from 'react-native-notifications';
 import {WebView} from 'react-native-webview';
 import {getVersion, getBuildNumber} from 'react-native-device-info';
+
 const {StatusBarManager} = NativeModules;
+
 const CODE_ENV = Config.CODE_ENV || 'production';
 const URLS = {
   local: 'http://localhost:3000',
@@ -63,6 +66,21 @@ const App = () => {
     };
 
     fetchTokens();
+  }, []);
+
+  useEffect(() => {
+    Notifications.registerRemoteNotifications();
+
+    Notifications.events().registerRemoteNotificationsRegistered(event => {
+      fetch(`${CODE_URL}/devices`, {
+        method: "POST"
+        headers: {
+          "Content-Type": "application/json",
+          Token: tokens[0]
+        },
+        body: JSON.stringify({ device: { token: event.deviceToken, platform: PLATFORM }}),
+      })
+    });
   }, []);
 
   StatusBarManager.getHeight(statusBarHeight => {

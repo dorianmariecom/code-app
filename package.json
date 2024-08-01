@@ -14,11 +14,13 @@
     "babel-jest": "*",
     "eslint": "*",
     "jest": "*",
+    "lodash": "*",
     "prettier": "*",
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
     "react-native-device-info": "*",
+    "react-native-notifications": "*",
     "react-native-webview": "*",
     "typescript": "*"
   },
