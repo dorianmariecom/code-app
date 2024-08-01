@@ -18,6 +18,7 @@ const URLS = {
 const CODE_URL = Config.CODE_URL || URLS[CODE_ENV] || URLS.production;
 const VERSION = getVersion();
 const BUILD_NUMBER = getBuildNumber();
+const PLATFORM = "ios";
 
 const App = () => {
   const webViewRef = useRef();
@@ -69,19 +70,23 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    Notifications.registerRemoteNotifications();
+    if (tokens[0]) {
+      Notifications.registerRemoteNotifications();
 
-    Notifications.events().registerRemoteNotificationsRegistered(event => {
-      fetch(`${CODE_URL}/devices`, {
-        method: "POST"
-        headers: {
-          "Content-Type": "application/json",
-          Token: tokens[0]
-        },
-        body: JSON.stringify({ device: { token: event.deviceToken, platform: PLATFORM }}),
-      })
-    });
-  }, []);
+      Notifications.events().registerRemoteNotificationsRegistered(event => {
+        fetch(`${CODE_URL}/devices`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Token: tokens[0],
+          },
+          body: JSON.stringify({
+            device: {token: event.deviceToken, platform: PLATFORM},
+          }),
+        });
+      });
+    }
+  }, [tokens]);
 
   StatusBarManager.getHeight(statusBarHeight => {
     setStatusBarHeight(statusBarHeight.height);
