@@ -6,6 +6,7 @@
     "@babel/core": "*",
     "@babel/preset-env": "*",
     "@babel/runtime": "*",
+    "@react-native-async-storage/async-storage": "*",
     "@react-native/babel-preset": "*",
     "@react-native/metro-config": "*",
     "@types/react": "*",

@@ -1,8 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from 'react-native-config';
-import {getVersion, getBuildNumber} from 'react-native-device-info';
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {NativeModules} from 'react-native';
 import {WebView} from 'react-native-webview';
+import {getVersion, getBuildNumber} from 'react-native-device-info';
 const {StatusBarManager} = NativeModules;
 const CODE_ENV = Config.CODE_ENV || 'production';
 const URLS = {
@@ -18,6 +19,21 @@ const BUILD_NUMBER = getBuildNumber();
 const App = () => {
   const webViewRef = useRef();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
+  const [tokens, setTokens] = useState([]);
+
+  const get = async key => {
+    try {
+      return await JSON.parse(AsyncStorage.getItem(key));
+    } catch {
+      return null;
+    }
+  };
+
+  const set = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch {}
+  };
 
   const update = () => {
     postJSON({
@@ -32,6 +48,23 @@ const App = () => {
     webViewRef.current.postMessage(JSON.stringify(data));
   };
 
+  const onMessage = async event => {
+    const data = JSON.parse(event.nativeEvent.data);
+
+    if ('tokens' in data) {
+      await set('tokens', data.tokens);
+      setTokens(data.tokens);
+    }
+  };
+
+  useEffect(() => {
+    const fetchTokens = async () => {
+      setTokens([await get('tokens')]);
+    };
+
+    fetchTokens();
+  }, []);
+
   StatusBarManager.getHeight(statusBarHeight => {
     setStatusBarHeight(statusBarHeight.height);
     update();
@@ -39,6 +72,7 @@ const App = () => {
 
   return (
     <WebView
+      onMessage={onMessage}
       ref={webViewRef}
       source={{uri: CODE_URL}}
       onLoadStart={update}
