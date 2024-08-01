@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+cp .env.production .env
+
+react-native run-ios --mode Debug --device=iPhone --scheme production.debug

@@ -2,4 +2,6 @@
 
 set -e
 
+cp .env.development .env
+
 react-native run-ios --mode Debug --device=iPhone --scheme development.debug

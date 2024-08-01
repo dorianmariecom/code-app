@@ -18,12 +18,13 @@ const URLS = {
 const CODE_URL = Config.CODE_URL || URLS[CODE_ENV] || URLS.production;
 const VERSION = getVersion();
 const BUILD_NUMBER = getBuildNumber();
-const PLATFORM = "ios";
+const PLATFORM = 'ios';
 
 const App = () => {
   const webViewRef = useRef();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const [tokens, setTokens] = useState([]);
+  const [deviceToken, setDeviceToken] = useState();
 
   const get = async key => {
     try {
@@ -46,6 +47,19 @@ const App = () => {
       statusBarHeight,
       version: VERSION,
     });
+
+    if (tokens[0] && deviceToken) {
+      fetch(`${CODE_URL}/devices`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Token: tokens[0],
+        },
+        body: JSON.stringify({
+          device: {token: deviceToken, platform: PLATFORM},
+        }),
+      });
+    }
   };
 
   const postJSON = data => {
@@ -62,30 +76,24 @@ const App = () => {
   };
 
   useEffect(() => {
-    const fetchTokens = async () => {
+    const gets = async () => {
       setTokens([await get('tokens')]);
+      setDeviceToken(await get('deviceToken'));
     };
 
-    fetchTokens();
+    gets();
   }, []);
 
   useEffect(() => {
-    if (tokens[0]) {
-      Notifications.registerRemoteNotifications();
+    Notifications.registerRemoteNotifications();
 
-      Notifications.events().registerRemoteNotificationsRegistered(event => {
-        fetch(`${CODE_URL}/devices`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Token: tokens[0],
-          },
-          body: JSON.stringify({
-            device: {token: event.deviceToken, platform: PLATFORM},
-          }),
-        });
-      });
-    }
+    Notifications.events().registerRemoteNotificationsRegistered(
+      async event => {
+        await set('deviceToken', event.deviceToken);
+        setDeviceToken(event.deviceToken);
+        update()
+      },
+    );
   }, [tokens]);
 
   StatusBarManager.getHeight(statusBarHeight => {
