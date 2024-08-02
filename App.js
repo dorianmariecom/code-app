@@ -46,7 +46,7 @@ const App = () => {
       config: Config,
       statusBarHeight,
       version: VERSION,
-      device: {token: deviceToken, platform: PLATFORM},
+      device: deviceToken && {token: deviceToken, platform: PLATFORM},
     });
   };
 
