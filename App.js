@@ -46,20 +46,8 @@ const App = () => {
       config: Config,
       statusBarHeight,
       version: VERSION,
+      device: {token: deviceToken, platform: PLATFORM},
     });
-
-    if (tokens[0] && deviceToken) {
-      fetch(`${CODE_URL}/devices`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Token: tokens[0],
-        },
-        body: JSON.stringify({
-          device: {token: deviceToken, platform: PLATFORM},
-        }),
-      });
-    }
   };
 
   const postJSON = data => {
