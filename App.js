@@ -91,7 +91,7 @@ const App = () => {
       async event => {
         await set('deviceToken', event.deviceToken);
         setDeviceToken(event.deviceToken);
-        update()
+        update();
       },
     );
   }, [tokens]);
