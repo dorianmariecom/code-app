@@ -1,7 +1,8 @@
+import 'react-native-url-polyfill/auto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from 'react-native-config';
 import React, {useRef, useState, useEffect} from 'react';
-import {NativeModules} from 'react-native';
+import {NativeModules, Linking} from 'react-native';
 import {Notifications} from 'react-native-notifications';
 import {WebView} from 'react-native-webview';
 import {getVersion, getBuildNumber} from 'react-native-device-info';
@@ -16,6 +17,7 @@ const URLS = {
   production: 'https://codedorian.com',
 };
 const CODE_URL = Config.CODE_URL || URLS[CODE_ENV] || URLS.production;
+const CODE_HOST = (new URL(CODE_URL)).host
 const VERSION = getVersion();
 const BUILD_NUMBER = getBuildNumber();
 const PLATFORM = 'ios';
@@ -24,7 +26,7 @@ const App = () => {
   const webViewRef = useRef();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const [tokens, setTokens] = useState([]);
-  const [deviceToken, setDeviceToken] = useState();
+  const [deviceToken, setDeviceToken] = useState(null);
 
   const get = async key => {
     try {
@@ -63,6 +65,15 @@ const App = () => {
     }
   };
 
+  const onShouldStartLoadWithRequest = request => {
+    if (request.url && (new URL(request.url)).host !== CODE_HOST) {
+      Linking.openURL(request.url);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   useEffect(() => {
     const gets = async () => {
       setTokens([await get('tokens')]);
@@ -97,6 +108,7 @@ const App = () => {
       onLoadStart={update}
       onLoad={update}
       onLoadEnd={update}
+      onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
     />
   );
 };
