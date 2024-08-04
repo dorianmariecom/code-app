@@ -1,4 +1,4 @@
-import 'react-native-url-polyfill/auto'
+import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from 'react-native-config';
 import React, {useRef, useState, useEffect} from 'react';
@@ -17,7 +17,7 @@ const URLS = {
   production: 'https://codedorian.com',
 };
 const CODE_URL = Config.CODE_URL || URLS[CODE_ENV] || URLS.production;
-const CODE_HOST = (new URL(CODE_URL)).host
+const CODE_HOST = new URL(CODE_URL).host;
 const VERSION = getVersion();
 const BUILD_NUMBER = getBuildNumber();
 const PLATFORM = 'ios';
@@ -66,13 +66,13 @@ const App = () => {
   };
 
   const onShouldStartLoadWithRequest = request => {
-    if (request.url && (new URL(request.url)).host !== CODE_HOST) {
+    if (request.url && new URL(request.url).host !== CODE_HOST) {
       Linking.openURL(request.url);
       return false;
     } else {
       return true;
     }
-  }
+  };
 
   useEffect(() => {
     const gets = async () => {
