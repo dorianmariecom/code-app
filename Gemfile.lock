@@ -68,13 +68,16 @@ GEM
     connection_pool (2.4.1)
     csv (3.3.0)
     diff-lcs (1.5.1)
-    dorian (0.7.7)
+    dorian (0.8.1)
       dorian-all
       dorian-anonymize
       dorian-anonymize-json
       dorian-anonymize-yaml
+      dorian-chat
+      dorian-commit
       dorian-csv-all
       dorian-csv-each
+      dorian-csv-map
       dorian-csv-merge
       dorian-csv-pluck
       dorian-dir
@@ -101,10 +104,17 @@ GEM
     dorian-anonymize-json (0.2.0)
       json
     dorian-anonymize-yaml (0.2.0)
+    dorian-chat (0.0.1)
+      git
+    dorian-commit (0.4.1)
+      git
     dorian-csv-all (0.0.1)
       activesupport
       csv
     dorian-csv-each (0.4.2)
+      activesupport
+      csv
+    dorian-csv-map (0.0.1)
       activesupport
       csv
     dorian-csv-merge (0.0.1)
