@@ -1,8 +1,8 @@
 ---
 AllCops:
   Exclude:
-  - node_modules/**/*
-  - vendor/**/*
+    - node_modules/**/*
+    - vendor/**/*
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 Performance/UnfreezeString:
