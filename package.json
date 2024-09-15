@@ -1,7 +1,4 @@
 {
-  "name": "code",
-  "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "@babel/core": "*",
     "@babel/preset-env": "*",
@@ -28,5 +25,8 @@
   "engines": {
     "node": "22.5.1",
     "npm": "10.8.2"
-  }
+  },
+  "name": "code",
+  "private": true,
+  "version": "0.0.1"
 }
